@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:odoapplications/CustomWidget/custombutton.dart';
 import 'package:odoapplications/globalVariables/global.dart';
-import 'package:odoapplications/screens/corouselSlider.dart';
+import 'package:odoapplications/CustomWidget/corouselSlider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:odoapplications/screens/loginScreen.dart';
 import 'package:odoapplications/screens/registerScreen.dart';

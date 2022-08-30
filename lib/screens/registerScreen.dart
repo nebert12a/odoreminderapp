@@ -5,8 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:odoapplications/globalVariables/global.dart';
+import 'package:odoapplications/util/odoDbConn.dart';
 
 import '../CustomWidget/CustomTextField.dart';
+import '../model/user.dart';
 import 'loginScreen.dart';
 import 'mainScreen.dart';
 
@@ -18,15 +20,35 @@ class RegisterUser extends StatefulWidget {
 }
 
 class _RegisterUserState extends State<RegisterUser> {
+  late User user;
+
   @override
   Widget build(BuildContext context) {
-    void funReg(){Get.to(const MainScreen());}
-    void fun(){ Get.to(const LoginScreen());}
     TextEditingController companyName= TextEditingController();
     TextEditingController fullName= TextEditingController();
     TextEditingController emailAddress= TextEditingController();
     TextEditingController password= TextEditingController();
     TextEditingController country= TextEditingController();
+    void funReg(){Get.to(const MainScreen());}
+    Future<void> fun() async {
+
+      final user = User(
+        userName:fullName.toString(),
+        userPassword: password.toString(),
+        email: emailAddress.toString(),
+        firstName: companyName.toString()
+      );
+      final dbUser= await DataBaseHelper.instance.create(user);
+      if(dbUser.userId==null){
+        print(dbUser.userId);
+
+      }else
+      {
+        print(dbUser.toString());
+        print(dbUser.userId);
+        Get.to(const LoginScreen());
+      }
+      }
     return SafeArea(child: Scaffold(
       body: Padding(
         padding: EdgeInsets.all(80.sp),

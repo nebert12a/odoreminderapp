@@ -16,7 +16,18 @@ class ListActivity extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(padding:EdgeInsets.all(30.h),
     child: Container(
-      color: GlobalVariables.backgroundTextColor,
+      decoration:  BoxDecoration(
+        color: GlobalVariables.backgroundColor,
+        boxShadow:[
+         BoxShadow(
+           blurRadius:30.h,
+          offset: Offset(10.sp,10.sp),
+           color: const Color(0xFFA7A9AF)
+         )
+        ],
+
+      ),
+
       child: ListTile(
         leading:CircleAvatar(radius: 70.r,
           backgroundColor: color,
