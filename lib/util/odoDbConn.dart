@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:odoapplications/intergrationClass/userIntegration.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../model/user.dart';
     class DataBaseHelper{
@@ -18,21 +21,19 @@ import '../model/user.dart';
       }
 
       Future<Database>_initDB(String path) async {
+       Directory directory = await getApplicationDocumentsDirectory();
+
+      // print(directory.toString());
         final dbpath= await getDatabasesPath();
-        final paths = join (dbpath, path);
-       return await openDatabase(path,version: 2,onCreate: _createDB);
+       String paths = '${directory.path}+' '+odo.db';
+       // final paths = join (dbpath, path);
+         print(paths);
+       return await openDatabase(paths,version: 2,onCreate: _createDB);
       }
 
 
 
   Future<FutureOr> _createDB(Database db, int version) async {
-         // await db.execute('''CREATE TABLE $userTable(
-         // $UserDatabaseIntegrationClass.userId $UserDatabaseIntegrationClass.userIDType,
-         // $UserDatabaseIntegrationClass.firstName $UserDatabaseIntegrationClass.nameType,
-         // $UserDatabaseIntegrationClass.userName $UserDatabaseIntegrationClass.nameType,
-         // $UserDatabaseIntegrationClass.email $UserDatabaseIntegrationClass.nameType,
-         // $UserDatabaseIntegrationClass.userPassword $UserDatabaseIntegrationClass.nameType
-         // )''');
     await db.execute('CREATE TABLE userTable(userId INTEGER PRIMARY KEY, firstName TEXT, userName TEXT, email TEXT, userPassword TEXT)',);
   }
   Future close() async{

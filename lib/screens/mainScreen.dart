@@ -6,10 +6,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odoapplications/globalVariables/global.dart';
-import 'package:odoapplications/screens/customerScreen.dart';
+import 'package:odoapplications/screens/customer/customerScreen.dart';
 
 import '../CustomWidget/activityWidget.dart';
 import '../CustomWidget/listActivity.dart';
+import 'customer/customerMainScreen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -220,7 +221,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
               onTap: () {
-                Get.to(const CustomerScreen());
+                Get.to(const CustomerMainScreen());
               },
             ),
             ListTile(
@@ -315,7 +316,10 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.white,)
               ),
               label: "Loaned Customer",
-              backgroundColor: Colors.deepOrangeAccent
+              backgroundColor: Colors.deepOrangeAccent,
+              onTap:()=>{
+                Get.to(const CustomerMainScreen())
+              }
 
             ),
             SpeedDialChild(
@@ -372,4 +376,5 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
+
 }

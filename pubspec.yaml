@@ -47,6 +47,9 @@ dependencies:
   sqlite3: ^1.8.0
   sqflite: ^2.0.3+1
   path_provider: ^2.0.11
+  dotted_border: ^2.0.0+2
+  flutter_barcode_scanner: ^2.0.0
+  file_picker: ^5.0.1
 
 dev_dependencies:
   flutter_test:

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:odoapplications/globalVariables/global.dart';
+import 'package:odoapplications/screens/customer/customerMainScreen.dart';
 import 'package:odoapplications/screens/homepage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
             bodyText2: const TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
           )
         ),
-        home: const MyHomePage(),
+        //home: const CustomerMainScreen(),
+       home: const MyHomePage(),
       ),
     );
   }
@@ -61,24 +63,22 @@ class _MyHomePageState extends State<MyHomePage> {
     final Size sizeContainer= MediaQuery.of(context).size;
 
     return  Scaffold(
-      body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                height: sizeContainer.height/2,
-                width: sizeContainer.width,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/odotechLogo.jpg"),
-                  fit: BoxFit.contain),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            height: sizeContainer.height/2,
+            width: sizeContainer.width,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/odotechLogo.jpg"),
+              fit: BoxFit.contain),
 
-                ),
-              ),
-              SizedBox(height: 100.h,),
-              const CircularProgressIndicator(),
-            ],
-          ), // This trailing comma makes auto-formatting nicer for build methods.
+            ),
+          ),
+          SizedBox(height: 100.h,),
+          const CircularProgressIndicator(),
+        ],
       ),
     );
   }
