@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
             ),
             width: 800,
             height: 100,
-            buttonColor: Colors.black,
+            buttonColor: GlobalVariables.callToActionColor,
           ),
           SizedBox(
             height: 50.h,

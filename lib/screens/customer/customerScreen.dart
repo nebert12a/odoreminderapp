@@ -26,6 +26,19 @@ class _CustomerScreenState extends State<CustomerScreen> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(150.h),
           child: AppBar(
+            centerTitle: true,
+            backgroundColor: Colors.grey[700]?.withOpacity(0.4),
+            elevation: 0,
+            // give the app bar rounded corners
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20.0),
+                bottomRight: Radius.circular(20.0),
+              ),
+            ),
+            // leading: Icon(
+            //   Icons.menu,
+            // ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -62,6 +75,7 @@ class _CustomerScreenState extends State<CustomerScreen> {
                   ),
                 ),
               ],
+
             ),
           ),
         ),

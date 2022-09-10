@@ -6,12 +6,6 @@ class ActivityWidget extends StatelessWidget {
   const ActivityWidget({
     Key? key,
   }) : super(key: key);
-
-  // final String activity;
-  // final int numberOfTimesRepeated;
-  // final Icon icon;
-  // final Color color;
-
   @override
   Widget build(BuildContext context) {
     return PreferredSize(

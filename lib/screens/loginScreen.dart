@@ -18,12 +18,18 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  void fun(){  Get.off(const MainScreen());}
-  void funREg(){  Get.to(const RegisterUser());}
+  void fun() {
+    Get.off(const MainScreen());
+  }
+
+  void funREg() {
+    Get.to(const RegisterUser());
+  }
+
   @override
   Widget build(BuildContext context) {
-  TextEditingController controller = TextEditingController();
-  TextEditingController controllerPassword = TextEditingController();
+    TextEditingController controller = TextEditingController();
+    TextEditingController controllerPassword = TextEditingController();
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(8.0.w),
@@ -52,11 +58,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontFamily: 'Hind',
                       color: Colors.black54),
                 ),
-                CustomTextField(controller: controller, hintText: " Email or PhoneNumber"),
+                CustomTextField(
+                    controller: controller, hintText: " Email or PhoneNumber"),
                 SizedBox(
                   height: 100.h,
                 ),
-                CustomTextField(controller: controllerPassword, hintText: " Password"),
+                CustomTextField(
+                    controller: controllerPassword, hintText: " Password"),
                 SizedBox(
                   height: 100.h,
                 ),
@@ -66,9 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "NEXT",
+                        "Login",
                         style: TextStyle(
-                            fontSize: 40.0.sp,
+                            fontSize: 55.0.sp,
                             fontWeight: FontWeight.bold,
                             fontFamily: "lato",
                             color: Colors.white),
@@ -82,56 +90,56 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 60.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                  GestureDetector(
-                    onTap: fun,
-                    child: Text(
-                      "Forgot password?",
-                      style: TextStyle(
-                          fontSize: 46.0.sp,
+                SizedBox(
+                  height: 30.h,
+                ),
+                ElevatedButton(
+                  onPressed: funREg,
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          GlobalVariables.backgroundColor)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.google,
+                        size: 60.sp,
+                        color:  GlobalVariables.callToActionColor,
+                      ),
+                      SizedBox(
+                        width: 95.w,
+                      ),
+                      Text(
+                        "Create Account",
+                        style: TextStyle(
+                          fontSize: 50.0.sp,
                           fontFamily: 'Hind',
-                          color: GlobalVariables.callToActionColor),
-                    ),
+                          fontWeight: FontWeight.bold,
+                          color:  GlobalVariables.callToActionColor,
+                        ),
+                      ),
+
+                    ],
                   ),
-                ],),
+                ),
                 SizedBox(
-                  height: 30.h,
+                  height: 90.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "|",
-                      style: TextStyle(
-                          fontSize: 46.0.sp,
-                          fontFamily: 'Hind',
-                          color: GlobalVariables.callToActionColor),
-                    ),
-                  ],),
-                SizedBox(
-                  height: 30.h,
-                ),
-                ElevatedButton(onPressed: funREg,
-                  style:  ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black26)), child:  Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      FontAwesomeIcons.google,
-                      size: 60.sp,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 95.w,
-                    ),
-                    Text(
-                      "Create Account",
-                      style: TextStyle(fontSize: 50.0.sp,   fontFamily: 'Hind', fontWeight:FontWeight.bold,color:Colors.white),
+                    GestureDetector(
+                      onTap: fun,
+                      child: Text(
+                        "Forgot password?",
+                        style: TextStyle(
+                            fontSize: 46.0.sp,
+                            fontFamily: 'Hind',
+                            color: GlobalVariables.callToActionColor),
+                      ),
                     ),
                   ],
                 ),
-                )
               ],
             ),
           ),

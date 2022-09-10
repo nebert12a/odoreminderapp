@@ -216,10 +216,10 @@ class _CustomerMainScreenState extends State<CustomerMainScreen> {
                   ),
                 ),
                 onTap: () {
-                  Get.to(ItemsScreen( name: 'juma',
+                  Get.to(
+                      const ItemsScreen( name: 'Item',
                     totalLoan: 900,
-                    totalExpenditure: 2000,
-                    function: ()=>{},));
+                    totalExpenditure: 2000,));
                 },
               ),
               ListTile(
