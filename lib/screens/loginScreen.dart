@@ -6,9 +6,14 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:odoapplications/CustomWidget/CustomTextField.dart';
 import 'package:odoapplications/screens/mainScreen.dart';
 import 'package:odoapplications/screens/registerScreen.dart';
+import 'package:odoapplications/util/companyDao.dart';
+import 'package:provider/provider.dart';
 
 import '../CustomWidget/custombutton.dart';
 import '../globalVariables/global.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../providers/companyProviders.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -18,18 +23,54 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  void fun() {
-    Get.off(const MainScreen());
+  TextEditingController emailController = TextEditingController();
+  TextEditingController controllerPassword = TextEditingController();
+  Future<void> loginOwner() async {
+    List<Map> owner= await CompanyDao.loginOwner(emailController.text, controllerPassword.text);
+      if(owner.isEmpty)
+        {
+          controllerPassword.clear();
+          emailController.clear();
+        }
+      else{
+        for (var element in owner) {
+          if(element["mailAddress"]==emailController.text&&element["password"]== controllerPassword.text)
+          {
+            SharedPreferences pref = await SharedPreferences.getInstance();
+            myAsyncMethod(element);
+           await pref.setString('mailAddress', element["mailAddress"]);
+            await pref.setString('companyName', element["companyName"]);
+            Get.off(const MainScreen());
+          }
+          else{
+
+            print("Wrong Information");
+            controllerPassword.clear();
+            emailController.clear();
+
+          }
+      }
+
+    }
+
+  }
+   myAsyncMethod(Map owner){
+    Provider.of<CompanyProvider>(context,listen: false).setOwner(owner);
   }
 
-  void funREg() {
+  void registerOwner() {
     Get.to(const RegisterUser());
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    controllerPassword.clear();
+    emailController.clear();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
-    TextEditingController controllerPassword = TextEditingController();
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(8.0.w),
@@ -59,17 +100,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Colors.black54),
                 ),
                 CustomTextField(
-                    controller: controller, hintText: " Email or PhoneNumber"),
+                    controller: emailController, hintText: " Email or PhoneNumber",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: controllerPassword, hintText: " Password"),
+                    controller: controllerPassword, hintText: " Password",val: true,),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomButton(
-                  fun,
+                  loginOwner,
                   widgetChild: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -94,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 30.h,
                 ),
                 ElevatedButton(
-                  onPressed: funREg,
+                  onPressed: registerOwner,
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
                           GlobalVariables.backgroundColor)),
@@ -129,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      onTap: fun,
+                      onTap: loginOwner,
                       child: Text(
                         "Forgot password?",
                         style: TextStyle(

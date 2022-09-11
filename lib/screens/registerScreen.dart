@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:odoapplications/globalVariables/global.dart';
 import 'package:odoapplications/util/odoDbConn.dart';
 
 import '../CustomWidget/CustomTextField.dart';
+import '../model/compan_owner.dart';
 import '../model/user.dart';
+import '../util/companyDao.dart';
 import 'loginScreen.dart';
 import 'mainScreen.dart';
 
@@ -29,8 +30,11 @@ class _RegisterUserState extends State<RegisterUser> {
     TextEditingController emailAddress= TextEditingController();
     TextEditingController password= TextEditingController();
     TextEditingController country= TextEditingController();
-    void funReg(){Get.to(const MainScreen());}
-    Future<void> fun() async {
+    TextEditingController phoneNumber= TextEditingController();
+    void loginOwner(){
+      Get.to(const LoginScreen());
+    }
+    Future<void> registerOwner() async {
 
       final user = User(
         userName:fullName.toString(),
@@ -38,14 +42,21 @@ class _RegisterUserState extends State<RegisterUser> {
         email: emailAddress.toString(),
         firstName: companyName.toString()
       );
-      final dbUser= await DataBaseHelper.instance.create(user);
-      if(dbUser.userId==null){
-        print(dbUser.userId);
+      final companyOwner = CompanyOwner(
+        companyName: companyName.text,
+        ownerName: fullName.text,
+        mailAddress: emailAddress.text,
+        password: password.text,
+        phoneNumber: phoneNumber.text,
+        chooseCountry: country.text,
+        creationDate: DateTime.now().toString()
+      );
+      final owner= await CompanyDao.createOwner(companyOwner);
+      if(owner.id==null){
 
       }else
       {
-        print(dbUser.toString());
-        print(dbUser.userId);
+
         Get.to(const LoginScreen());
       }
       }
@@ -70,27 +81,31 @@ class _RegisterUserState extends State<RegisterUser> {
               SizedBox(
                 height: 100.h,
               ),
-              CustomTextField(controller: companyName, hintText: "Company name"),
+              CustomTextField(controller: companyName, hintText: "Company name",val: false,),
               SizedBox(
                 height: 100.h,
               ),
-              CustomTextField(controller: fullName, hintText: "Full name"),
+              CustomTextField(controller: fullName, hintText: "Full name",val: false,),
               SizedBox(
                 height: 100.h,
               ),
-              CustomTextField(controller: emailAddress, hintText: "Email address"),
+              CustomTextField(controller: emailAddress, hintText: "Email address",val: false,),
               SizedBox(
                 height: 100.h,
               ),
-              CustomTextField(controller: password, hintText: "password"),
+              CustomTextField(controller: password, hintText: "password",val: true,),
               SizedBox(
                 height: 100.h,
               ),
-              CustomTextField(controller: country, hintText: "Choose Country"),
+              CustomTextField(controller: phoneNumber, hintText: "Phone Number",val: false,),
               SizedBox(
                 height: 100.h,
               ),
-              ElevatedButton(onPressed: fun,
+              CustomTextField(controller: country, hintText: "Choose Country",val: false,),
+              SizedBox(
+                height: 100.h,
+              ),
+              ElevatedButton(onPressed: registerOwner,
                 style:  ButtonStyle(backgroundColor: MaterialStateProperty.all(GlobalVariables.callToActionColor)), child:  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -118,7 +133,7 @@ class _RegisterUserState extends State<RegisterUser> {
               SizedBox(
                 height: 30.h,
               ),
-              ElevatedButton(onPressed: fun,
+              ElevatedButton(onPressed: loginOwner,
                 style:  ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black)), child:  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

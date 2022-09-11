@@ -18,6 +18,7 @@ class AddItem extends StatefulWidget {
 }
 
 class _AddItemState extends State<AddItem> {
+
   List<File> images = [];
   final _addItemFormKey = GlobalKey<FormState>();
   TextEditingController itemName = TextEditingController();
@@ -179,17 +180,17 @@ class _AddItemState extends State<AddItem> {
                 SizedBox(
                   height: 100.h,
                 ),
-                CustomTextField(controller: itemName, hintText: "Item name"),
+                CustomTextField(controller: itemName, hintText: "Item name",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: barcode, hintText: "Barcode number"),
+                    controller: barcode, hintText: "Barcode number",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: phoneNumber, hintText: "Quantity of Item"),
+                    controller: phoneNumber, hintText: "Quantity of Item",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
@@ -207,7 +208,7 @@ class _AddItemState extends State<AddItem> {
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: sellingPrice, hintText: "Selling Price"),
+                    controller: sellingPrice, hintText: "Selling Price",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
@@ -225,7 +226,7 @@ class _AddItemState extends State<AddItem> {
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: purchasePrice, hintText: "Purchase Price"),
+                    controller: purchasePrice, hintText: "Purchase Price",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
@@ -243,23 +244,23 @@ class _AddItemState extends State<AddItem> {
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: openingStock, hintText: "Opening Stock"),
+                    controller: openingStock, hintText: "Opening Stock",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
                     controller: openingStockValue,
-                    hintText: "Opening Stock Price/value"),
+                    hintText: "Opening Stock Price/value",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: openingStockValue, hintText: "Record Level"),
+                    controller: openingStockValue, hintText: "Record Level",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: vendor, hintText: "Preferred Vendor"),
+                    controller: vendor, hintText: "Preferred Vendor",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
@@ -275,11 +276,11 @@ class _AddItemState extends State<AddItem> {
                 ),
                 CustomTextField(
                     controller: manufacturer,
-                    hintText: "Manufacturer Of Stock"),
+                    hintText: "Manufacturer Of Stock",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
-                CustomTextField(controller: brand, hintText: "Brand"),
+                CustomTextField(controller: brand, hintText: "Brand",val: false,),
               ],
             ),
           ),
@@ -287,4 +288,5 @@ class _AddItemState extends State<AddItem> {
       ),
     );
   }
+
 }

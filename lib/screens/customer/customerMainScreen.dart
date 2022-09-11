@@ -7,6 +7,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odoapplications/globalVariables/global.dart';
 import 'package:odoapplications/screens/customer/customerScreen.dart';
+import 'package:odoapplications/screens/mainScreen.dart';
 
 import '../inventory/itemsScreen.dart';
 import 'activeCustomerScreen.dart';
@@ -202,7 +203,10 @@ class _CustomerMainScreenState extends State<CustomerMainScreen> {
                         GoogleFonts.lato(fontSize: 29.0.sp).fontFamily,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Get.to(
+                      const MainScreen());
+                },
 
               ),
               ListTile(

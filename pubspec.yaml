@@ -51,8 +51,14 @@ dependencies:
   flutter_barcode_scanner: ^2.0.0
   file_picker: ^5.0.1
   timeline_tile: ^2.0.0
+  flutter_inset_box_shadow: ^1.0.8
+  moor_flutter:
+  json_serializable:
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
+  moor_generator:
+  build_runner:
   flutter_test:
     sdk: flutter
 

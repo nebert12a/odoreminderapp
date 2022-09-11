@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odoapplications/globalVariables/global.dart';
-import 'package:odoapplications/screens/customer/customerScreen.dart';
+import 'package:odoapplications/providers/companyProviders.dart';
+import 'package:provider/provider.dart';
 
-import '../CustomWidget/activityWidget.dart';
-import '../CustomWidget/listActivity.dart';
 import 'customer/customerMainScreen.dart';
+import 'dashboard/dashboard.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -25,6 +25,7 @@ class _MainScreenState extends State<MainScreen> {
   }
   @override
   Widget build(BuildContext context) {
+   final owner= Provider.of<CompanyProvider>(context).owner;
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
@@ -37,7 +38,7 @@ class _MainScreenState extends State<MainScreen> {
                   width: 20.w,
                 ),
                 Text(
-                  "Company Name",
+                   owner.companyName!,
                   style: TextStyle(fontSize: 48.sp),
                 ),
                 Container(
@@ -61,112 +62,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
         ),
-        body: Padding(
-          padding: EdgeInsets.all(50.0.h),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "My activities",
-                      style: TextStyle(
-                          fontSize: 50.0.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54),
-                    ),
-                    SizedBox(
-                      width: 580.w,
-                    ),
-                    GestureDetector(
-                      child: Icon(
-                        FontAwesomeIcons.refresh,
-                        size: 50.sp,
-                        color: GlobalVariables.callToActionColor,
-                      ),
-                      onTap: () => {},
-                    ),
-                  ],
-                ),
-                ListActivity(
-                  activity: 'hi there shipment',
-                  function: ()=>{
-                  },
-                  numberOfTimesRepeated: 90,
-                  color: Colors.black,
-                  icon: FontAwesomeIcons.notesMedical,
-                ),
-                ListActivity(
-                  activity: 'hi there shipment',
-                  function: ()=>{
-                  },
-                  numberOfTimesRepeated: 90,
-                  color: Colors.black,
-                  icon: FontAwesomeIcons.notesMedical,
-                ),
-                ListActivity(
-                  activity: 'hi there shipment',
-                  function: ()=>{
-                  },
-                  numberOfTimesRepeated: 90,
-                  color: Colors.black,
-                  icon: FontAwesomeIcons.notesMedical,
-                ),
-                ListActivity(
-                  activity: 'hi there shipment',
-                  function: ()=>{
-                  },
-                  numberOfTimesRepeated: 90,
-                  color: Colors.black,
-                  icon: FontAwesomeIcons.notesMedical,
-                ),
-                ListActivity(
-                  activity: 'hi there shipment',
-                  function: ()=>{
-                  },
-                  numberOfTimesRepeated: 90,
-                  color: Colors.black,
-                  icon: FontAwesomeIcons.notesMedical,
-                ),
-                ListActivity(
-                  activity: 'hi there shipment',
-                  function: ()=>{
-                  },
-                  numberOfTimesRepeated: 90,
-                  color: Colors.black,
-                  icon: FontAwesomeIcons.notesMedical,
-                ),
-                ListActivity(
-                  activity: 'hi there shipment',
-                  function: ()=>{
-                  },
-                  numberOfTimesRepeated: 90,
-                  color: Colors.black,
-                  icon: FontAwesomeIcons.notesMedical,
-                ),
-                ListActivity(
-                  activity: 'home',
-                  function: ()=>{
-
-                  },
-                  numberOfTimesRepeated: 70,
-                  color: Colors.green,
-                  icon: FontAwesomeIcons.simCard,
-                ),
-                ListActivity(
-                  activity: 'final',
-                  function:()=>{
-
-                  },
-                  numberOfTimesRepeated: 790,
-                  color: Colors.red,
-                  icon: FontAwesomeIcons.hireAHelper,
-                ),
-              ],
-            ),
-          ),
-        ),
+        body: const DashBoard(),
         drawer:  Drawer(child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -175,10 +71,10 @@ class _MainScreenState extends State<MainScreen> {
                 child: Icon(FontAwesomeIcons.user,
                 size: 110.sp,),
               ),
-              accountEmail: const Text('Test@gmail.com'),
-              accountName: const Text(
-                'Signed name',
-                style: TextStyle(fontSize: 24.0),
+              accountEmail:  Text(owner.mailAddress!),
+              accountName:  Text(
+                owner.mailAddress!,
+                style: const TextStyle(fontSize: 24.0),
               ),
               decoration: const BoxDecoration(
                color: GlobalVariables.callToActionColor

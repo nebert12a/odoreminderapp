@@ -1,11 +1,8 @@
 import 'dart:io';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:timeline_tile/timeline_tile.dart';
 
 import '../../CustomWidget/historyClass.dart';
 import '../../globalVariables/global.dart';
@@ -94,7 +91,7 @@ class ItemsDetails extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Container(
+            SizedBox(
               // decoration: BoxDecoration(
               //   color: GlobalVariables.backgroundColor,
               //   boxShadow: [
@@ -450,7 +447,7 @@ class ItemsDetails extends StatelessWidget {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             SizedBox(
-                                              height: 20.h,
+                                              height: 10.h,
                                             ),
                                             Row(
                                               mainAxisAlignment:
@@ -487,7 +484,7 @@ class ItemsDetails extends StatelessWidget {
                                                   ],
                                                 ),
                                                 SizedBox(
-                                                  width: 180.w,
+                                                  width: 178.w,
                                                 ),
                                                 Column(
                                                   crossAxisAlignment:
@@ -501,13 +498,13 @@ class ItemsDetails extends StatelessWidget {
                                                     ),
                                                      Text("Per Item Name",
                                                        style: TextStyle(
-                                                           fontSize: 37.sp),),
+                                                           fontSize: 35.sp),),
                                                     TextButton(
                                                         onPressed: ()=>{
                                                           buildOnWillpop('Sales')
                                                         },
                                                         child:   Text("Show Description", style: TextStyle(
-                                                            fontSize: 37.sp),)),
+                                                            fontSize: 35.sp),)),
                                                   ],
                                                 ),
                                               ],

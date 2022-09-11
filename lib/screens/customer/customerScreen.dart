@@ -99,19 +99,19 @@ class _CustomerScreenState extends State<CustomerScreen> {
                 SizedBox(
                   height: 100.h,
                 ),
-                CustomTextField(controller: customerName, hintText: "Customer name"),
+                CustomTextField(controller: customerName, hintText: "Customer name",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
-                CustomTextField(controller: emailAddress, hintText: "Email address"),
+                CustomTextField(controller: emailAddress, hintText: "Email address",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
-                CustomTextField(controller: phoneNumber, hintText: "Phone Number"),
+                CustomTextField(controller: phoneNumber, hintText: "Phone Number",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
-                CustomTextField(controller: country, hintText: "Choose Country"),
+                CustomTextField(controller: country, hintText: "Choose Country",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
@@ -128,7 +128,7 @@ class _CustomerScreenState extends State<CustomerScreen> {
                 SizedBox(
                   height: 20.h,
                 ),
-                CustomTextField(controller: customerType, hintText: "Customer Type"),
+                CustomTextField(controller: customerType, hintText: "Customer Type",val: false,),
               ],
             ),
           ),
