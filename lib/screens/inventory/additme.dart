@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:odoapplications/util/ItemDao.dart';
 
 import '../../CustomWidget/CustomTextField.dart';
 import '../../globalVariables/utils.dart';
+import '../../model/item.dart';
 
 class AddItem extends StatefulWidget {
   const AddItem({Key? key}) : super(key: key);
@@ -18,16 +18,16 @@ class AddItem extends StatefulWidget {
 }
 
 class _AddItemState extends State<AddItem> {
-
   List<File> images = [];
   final _addItemFormKey = GlobalKey<FormState>();
   TextEditingController itemName = TextEditingController();
-  TextEditingController phoneNumber = TextEditingController();
+  TextEditingController quantityOfItem = TextEditingController();
   TextEditingController barcode = TextEditingController();
   TextEditingController sellingPrice = TextEditingController();
   TextEditingController purchasePrice = TextEditingController();
   TextEditingController openingStock = TextEditingController();
   TextEditingController openingStockValue = TextEditingController();
+  TextEditingController openingRecordStockValue = TextEditingController();
   TextEditingController openingStockRecord = TextEditingController();
   TextEditingController country = TextEditingController();
   TextEditingController recordLevel = TextEditingController();
@@ -56,6 +56,7 @@ class _AddItemState extends State<AddItem> {
         )) ??
         false;
   }
+
   void selectImages() async {
     var res = await pickImages();
     setState(() {
@@ -91,7 +92,42 @@ class _AddItemState extends State<AddItem> {
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: GestureDetector(
-                          onTap: () => {},
+                          onTap: () async {
+                            Item item = Item(
+                              itemName: itemName.text,
+                              openingStock: openingStock.text,
+                              barcode: barcode.text,
+                              brand: brand.text,
+                              manufacturer: manufacturer.text,
+                              openingStockRecord: openingStockRecord.text,
+                              openingStockValue: openingStockValue.text,
+                              purchasePrice: purchasePrice.text,
+                              quantityOfItem: quantityOfItem.text,
+                              sellingPrice: sellingPrice.text,
+                              vendor: vendor.text,
+                              recordLevel: recordLevel.text,
+                            );
+                            var savedItem = await ItemDao.createItem(item);
+                            if (savedItem.id != null) {
+                              showSnackBar(context, 'Saved Item');
+                              itemName.clear();
+                              openingStock.clear();
+                              barcode.clear();
+                              brand.clear();
+                              manufacturer.clear();
+                              openingStockRecord.clear();
+                              openingStockValue.clear();
+                              purchasePrice.clear();
+                              quantityOfItem.clear();
+                              sellingPrice.clear();
+                              vendor.clear();
+                              recordLevel.clear();
+                              // itemName.clear();
+                              // itemName.clear();
+                              // itemName.clear();
+                              //
+                            }
+                          },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -129,68 +165,77 @@ class _AddItemState extends State<AddItem> {
                 ),
                 images.isNotEmpty
                     ? CarouselSlider(
-                  items: images.map(
-                        (i) {
-                      return Builder(
-                        builder: (BuildContext context) => Image.file(
-                          i,
-                          fit: BoxFit.cover,
+                        items: images.map(
+                          (i) {
+                            return Builder(
+                              builder: (BuildContext context) => Image.file(
+                                i,
+                                fit: BoxFit.cover,
+                                height: 900.h,
+                                width: 1000.w,
+                              ),
+                            );
+                          },
+                        ).toList(),
+                        options: CarouselOptions(
+                          viewportFraction: 1,
                           height: 900.h,
-                          width: 1000.w,
                         ),
-                      );
-                    },
-                  ).toList(),
-                  options: CarouselOptions(
-                    viewportFraction: 1,
-                    height: 900.h,
-
-                  ),
-                )
+                      )
                     : GestureDetector(
-                  onTap: selectImages,
-                  child: DottedBorder(
-                    borderType: BorderType.RRect,
-                    radius: Radius.circular(30.r),
-                    dashPattern: const [10, 4],
-                    strokeCap: StrokeCap.round,
-                    child: Container(
-                      width: 940.w,
-                      height: 600.h,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.r)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.folder,
-                            size: 160.sp,
-                          ),
-                          Text(
-                            "Add Image Of Item",
-                            style: TextStyle(
-                              fontSize: 50.0.sp,
+                        onTap: selectImages,
+                        child: DottedBorder(
+                          borderType: BorderType.RRect,
+                          radius: Radius.circular(30.r),
+                          dashPattern: const [10, 4],
+                          strokeCap: StrokeCap.round,
+                          child: Container(
+                            width: 940.w,
+                            height: 600.h,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.r)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.folder,
+                                  size: 160.sp,
+                                ),
+                                Text(
+                                  "Add Image Of Item",
+                                  style: TextStyle(
+                                    fontSize: 50.0.sp,
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 100.h,
-                ),
-                CustomTextField(controller: itemName, hintText: "Item name",val: false,),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: barcode, hintText: "Barcode number",val: false,),
+                  controller: itemName,
+                  hintText: "Item name",
+                  val: false,
+                ),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: phoneNumber, hintText: "Quantity of Item",val: false,),
+                  controller: barcode,
+                  hintText: "Barcode number",
+                  val: false,
+                ),
+                SizedBox(
+                  height: 100.h,
+                ),
+                CustomTextField(
+                  controller: quantityOfItem,
+                  hintText: "Quantity of Item",
+                  val: false,
+                ),
                 SizedBox(
                   height: 100.h,
                 ),
@@ -208,7 +253,10 @@ class _AddItemState extends State<AddItem> {
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: sellingPrice, hintText: "Selling Price",val: false,),
+                  controller: sellingPrice,
+                  hintText: "Selling Price",
+                  val: false,
+                ),
                 SizedBox(
                   height: 100.h,
                 ),
@@ -226,7 +274,10 @@ class _AddItemState extends State<AddItem> {
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: purchasePrice, hintText: "Purchase Price",val: false,),
+                  controller: purchasePrice,
+                  hintText: "Purchase Price",
+                  val: false,
+                ),
                 SizedBox(
                   height: 100.h,
                 ),
@@ -244,23 +295,34 @@ class _AddItemState extends State<AddItem> {
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: openingStock, hintText: "Opening Stock",val: false,),
+                  controller: openingStock,
+                  hintText: "Opening Stock",
+                  val: false,
+                ),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: openingStockValue,
-                    hintText: "Opening Stock Price/value",val: false,),
+                  controller: openingStockValue,
+                  hintText: "Opening Stock Price/value",
+                  val: false,
+                ),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: openingStockValue, hintText: "Record Level",val: false,),
+                  controller: recordLevel,
+                  hintText: "Record Level",
+                  val: false,
+                ),
                 SizedBox(
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: vendor, hintText: "Preferred Vendor",val: false,),
+                  controller: vendor,
+                  hintText: "Preferred Vendor",
+                  val: false,
+                ),
                 SizedBox(
                   height: 100.h,
                 ),
@@ -275,12 +337,18 @@ class _AddItemState extends State<AddItem> {
                   height: 100.h,
                 ),
                 CustomTextField(
-                    controller: manufacturer,
-                    hintText: "Manufacturer Of Stock",val: false,),
+                  controller: manufacturer,
+                  hintText: "Manufacturer Of Stock",
+                  val: false,
+                ),
                 SizedBox(
                   height: 100.h,
                 ),
-                CustomTextField(controller: brand, hintText: "Brand",val: false,),
+                CustomTextField(
+                  controller: brand,
+                  hintText: "Brand",
+                  val: false,
+                ),
               ],
             ),
           ),
@@ -288,5 +356,4 @@ class _AddItemState extends State<AddItem> {
       ),
     );
   }
-
 }

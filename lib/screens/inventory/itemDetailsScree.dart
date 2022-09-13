@@ -15,7 +15,9 @@ class ItemsDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<bool> buildOnWillpop(String type) async {
-      return (await showDialog(
+      return (
+
+          await showDialog(
         context: context,
         builder: (context) => AlertDialog(
           title:  Text('$type Description'),
@@ -92,15 +94,6 @@ class ItemsDetails extends StatelessWidget {
         body: Column(
           children: [
             SizedBox(
-              // decoration: BoxDecoration(
-              //   color: GlobalVariables.backgroundColor,
-              //   boxShadow: [
-              //     BoxShadow(
-              //         blurRadius: 30.r,
-              //         offset: const Offset(20, 20),
-              //         color: const Color(0xFFA7A9AF))
-              //   ],
-              // ),
               height: 600.h,
               child: Padding(
                 padding: EdgeInsets.only(left: 60.0.w, right: 120.0.w),

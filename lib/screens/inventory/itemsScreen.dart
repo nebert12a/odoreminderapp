@@ -8,15 +8,17 @@ import 'package:odoapplications/screens/inventory/additme.dart';
 
 import '../../globalVariables/global.dart';
 import '../customer/SearchScreen.dart';
-import '../customer/activeCustomerScreen.dart';
-import '../customer/allCustomerScreen.dart';
 import '../customer/customerMainScreen.dart';
+import '../mainScreen.dart';
 import 'allItemDart.dart';
 import 'itemDetailsScree.dart';
 
 class ItemsScreen extends StatefulWidget {
   const ItemsScreen(
-      {Key? key, required this.name, required this.totalExpenditure, required this.totalLoan})
+      {Key? key,
+      required this.name,
+      required this.totalExpenditure,
+      required this.totalLoan})
       : super(key: key);
   final String name;
   final double totalExpenditure;
@@ -27,7 +29,6 @@ class ItemsScreen extends StatefulWidget {
 }
 
 class _ItemsScreenState extends State<ItemsScreen> {
-
   void navigateToSearchScreen(String query) {
     Get.to(const SearchScreen());
   }
@@ -43,7 +44,6 @@ class _ItemsScreenState extends State<ItemsScreen> {
     'Low Stock item',
     'Inactive items',
     'Service',
-
   ];
 
   _handleDrawer() {
@@ -64,24 +64,16 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 children: <Widget>[
                   Text(
                     'Sort mode',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .caption,
+                    style: Theme.of(context).textTheme.caption,
                   ),
                   const SizedBox(height: 12),
                   ToggleButtons(
                     borderRadius: BorderRadius.circular(2.0),
-                    selectedBorderColor: Theme
-                        .of(context)
-                        .colorScheme
-                        .primary,
+                    selectedBorderColor: Theme.of(context).colorScheme.primary,
                     onPressed: (int index) {
                       setModalState(() {
                         setState(() {
-                          _sortType = index == 0
-                              ? 'Asc'
-                              : 'Desc';
+                          _sortType = index == 0 ? 'Asc' : 'Desc';
                         });
                       });
                     },
@@ -135,31 +127,27 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 title: Text(
                   'Dashboard',
                   style: TextStyle(
-                    fontFamily:
-                    GoogleFonts
-                        .lato(fontSize: 29.0.sp)
-                        .fontFamily,
+                    fontFamily: GoogleFonts.lato(fontSize: 29.0.sp).fontFamily,
                   ),
                 ),
-                onTap: () {},
-
+                onTap: () {
+                  Get.to(const MainScreen());
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.inventory_2_outlined),
                 title: Text(
                   'Inventory',
                   style: TextStyle(
-                    fontFamily: GoogleFonts
-                        .lato(
-                        fontSize: 29.0.sp
-                    )
-                        .fontFamily,
+                    fontFamily: GoogleFonts.lato(fontSize: 29.0.sp).fontFamily,
                   ),
                 ),
                 onTap: () {
-                  Get.to(const ItemsScreen(name: 'juma',
+                  Get.to(const ItemsScreen(
+                    name: 'juma',
                     totalLoan: 900,
-                    totalExpenditure: 2000,));
+                    totalExpenditure: 2000,
+                  ));
                 },
               ),
               ListTile(
@@ -167,10 +155,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 title: Text(
                   'Customer',
                   style: TextStyle(
-                    fontFamily:
-                    GoogleFonts
-                        .lato(fontSize: 29.0.sp)
-                        .fontFamily,
+                    fontFamily: GoogleFonts.lato(fontSize: 29.0.sp).fontFamily,
                   ),
                 ),
                 onTap: () {
@@ -182,10 +167,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 title: Text(
                   'Business report',
                   style: TextStyle(
-                    fontFamily:
-                    GoogleFonts
-                        .lato(fontSize: 29.0.sp)
-                        .fontFamily,
+                    fontFamily: GoogleFonts.lato(fontSize: 29.0.sp).fontFamily,
                   ),
                 ),
                 onTap: () {},
@@ -195,10 +177,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 title: Text(
                   'Vendors',
                   style: TextStyle(
-                    fontFamily:
-                    GoogleFonts
-                        .lato(fontSize: 29.0.sp)
-                        .fontFamily,
+                    fontFamily: GoogleFonts.lato(fontSize: 29.0.sp).fontFamily,
                   ),
                 ),
                 onTap: () {},
@@ -208,10 +187,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 title: Text(
                   'Purchase Orders',
                   style: TextStyle(
-                    fontFamily:
-                    GoogleFonts
-                        .lato(fontSize: 29.0.sp)
-                        .fontFamily,
+                    fontFamily: GoogleFonts.lato(fontSize: 29.0.sp).fontFamily,
                   ),
                 ),
                 onTap: () {},
@@ -221,10 +197,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 title: Text(
                   'Bills',
                   style: TextStyle(
-                    fontFamily:
-                    GoogleFonts
-                        .lato(fontSize: 29.0.sp)
-                        .fontFamily,
+                    fontFamily: GoogleFonts.lato(fontSize: 29.0.sp).fontFamily,
                   ),
                 ),
                 onTap: () {},
@@ -234,10 +207,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 title: Text(
                   'Settings',
                   style: TextStyle(
-                    fontFamily:
-                    GoogleFonts
-                        .lato(fontSize: 29.0.sp)
-                        .fontFamily,
+                    fontFamily: GoogleFonts.lato(fontSize: 29.0.sp).fontFamily,
                   ),
                 ),
                 onTap: () {},
@@ -247,10 +217,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 title: Text(
                   'Feedback',
                   style: TextStyle(
-                    fontFamily:
-                    GoogleFonts
-                        .lato(fontSize: 29.0.sp)
-                        .fontFamily,
+                    fontFamily: GoogleFonts.lato(fontSize: 29.0.sp).fontFamily,
                   ),
                 ),
                 onTap: () {},
@@ -276,7 +243,6 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 width: 20.w,
               ),
               DropdownButton(
-
                 // Initial Value
                 value: dropdownvalue,
 
@@ -299,10 +265,10 @@ class _ItemsScreenState extends State<ItemsScreen> {
                       _scaffoldBody = const AllItem();
                     } else if (dropdownvalue == "Active items") {
                       _scaffoldBody = ItemsDetails();
-                    } else if (dropdownvalue == "Ungrouped item") {}
-                    else if (dropdownvalue == "Low Stock item") {}
-                    else if (dropdownvalue == "Inactive items") {}
-                    else {}
+                    } else if (dropdownvalue == "Ungrouped item") {
+                    } else if (dropdownvalue == "Low Stock item") {
+                    } else if (dropdownvalue == "Inactive items") {
+                    } else {}
                   });
                 },
               ),
@@ -333,21 +299,90 @@ class _ItemsScreenState extends State<ItemsScreen> {
           ),
         ),
       ),
-      body: _scaffoldBody,
+      body: SingleChildScrollView(
+        physics: const ScrollPhysics(),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(30.h),
+              child: PreferredSize(
+                preferredSize: Size.fromHeight(200.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 200.h,
+                        margin: EdgeInsets.only(left: 15.w),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(80.r),
+                          elevation: 1,
+                          child: TextFormField(
+                            onFieldSubmitted: navigateToSearchScreen,
+                            decoration: InputDecoration(
+                              prefixIcon: InkWell(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: 6.w,
+                                  ),
+                                  child: Icon(
+                                    Icons.search,
+                                    color: Colors.black,
+                                    size: 65.sp,
+                                  ),
+                                ),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                              contentPadding: EdgeInsets.only(top: 10.h),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(70.r),
+                                ),
+                                borderSide: BorderSide.none,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(70.r),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.black38,
+                                  width: 5.w,
+                                ),
+                              ),
+                              hintText: 'Search',
+                              hintStyle: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 40.sp,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            _scaffoldBody,
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
-    child: Icon(
-    Icons.add,
-      size: 60.sp,
-    ),
-    onPressed: () => {Get.to(const AddItem())},
-    )
-    ,
+        backgroundColor: GlobalVariables.callToActionColor,
+        child: Icon(
+          Icons.add,
+          size: 60.sp,
+        ),
+        onPressed: () => {Get.to(const AddItem())},
+      ),
     );
   }
 
   @override
   void initState() {
     super.initState();
-    _scaffoldBody =const AllItem();
+    _scaffoldBody = const AllItem();
   }
 }

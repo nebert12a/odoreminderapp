@@ -8,7 +8,6 @@ import 'package:odoapplications/util/odoDbConn.dart';
 
 import '../CustomWidget/CustomTextField.dart';
 import '../model/compan_owner.dart';
-import '../model/user.dart';
 import '../util/companyDao.dart';
 import 'loginScreen.dart';
 import 'mainScreen.dart';
@@ -21,7 +20,6 @@ class RegisterUser extends StatefulWidget {
 }
 
 class _RegisterUserState extends State<RegisterUser> {
-  late User user;
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +33,6 @@ class _RegisterUserState extends State<RegisterUser> {
       Get.to(const LoginScreen());
     }
     Future<void> registerOwner() async {
-
-      final user = User(
-        userName:fullName.toString(),
-        userPassword: password.toString(),
-        email: emailAddress.toString(),
-        firstName: companyName.toString()
-      );
       final companyOwner = CompanyOwner(
         companyName: companyName.text,
         ownerName: fullName.text,

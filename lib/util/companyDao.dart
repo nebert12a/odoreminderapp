@@ -5,11 +5,6 @@ import '../model/compan_owner.dart';
 import 'odoDbConn.dart';
 
 class CompanyDao {
-  //
-  // Future<void> watchAllOwnerTable() async {
-  //   final db= await DataBaseHelper.instance.database;
-  //   db.query(table)
-  // }
   static Future<CompanyOwner> createOwner(CompanyOwner owner) async {
     final db= await DataBaseHelper.instance.database;
     final id= await db.insert("companyTable",owner.toMap());
